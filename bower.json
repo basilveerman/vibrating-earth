@@ -1,0 +1,19 @@
+{
+  "name": "vibrating_earth",
+  "version": "0.0.0",
+  "authors": [
+    "Basil Veerman <bveerman@uvic.ca>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "leaflet-ajax": "~1.1.0",
+    "leaflet.markercluster": "~0.4.0"
+  }
+}
