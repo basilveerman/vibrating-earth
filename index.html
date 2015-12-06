@@ -32,14 +32,25 @@
     var osm = new L.TileLayer(osmUrl, {attribution: osmAttrib});
     osm.addTo(map);
 
-    <!-- var seismic = new L.GeoJSON.AJAX("http://www.earthquakescanada.nrcan.gc.ca/api/seismic-stations/index.json"); -->
-    <!-- seismic.addTo(map); -->
+    var myLayer = L.geoJson().addTo(map);
 
-    var seismic = L.markerClusterGroup();
     $.getJSON("http://www.earthquakescanada.nrcan.gc.ca/api/seismic-stations/index.json", function(data) {
-    var geojson = L.geoJson(data);
-    seismic.addLayer(geojson);
+      $.each(data, function(k, v) {
+        var feature = {
+          type: "Feature",
+          properties: {
+            elevation: v['elevation']
+          },
+          geometry: {
+            type: v['geoJSON']['type'],
+            coordinates: [v['geoJSON']['coordinates'][1], v['geoJSON']['coordinates'][0]]
+          }
+        };
+        myLayer.addData(feature);
+      })
     });
+
+
 
   </script>
 </body>
